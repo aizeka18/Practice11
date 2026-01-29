@@ -8,15 +8,23 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// Root endpoint
+
 app.get('/', (req, res) => {
   res.json({ message: 'API is running' });
 });
 
-// Products API
+
+app.get('/version', (req, res) => {
+  res.json({
+    version: '1.1',
+    updatedAt: '2026-01-18'
+  });
+});
+
+
 app.use('/api/products', productsRoutes);
 
-// Start server after DB connection
+
 connectDB(process.env.MONGO_URI).then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
