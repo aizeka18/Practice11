@@ -1,4 +1,5 @@
 require('dotenv').config();
+const itemsRoutes = require('./routes/items');
 const express = require('express');
 const { connectDB } = require('./config/db');
 const productsRoutes = require('./routes/products');
@@ -23,6 +24,7 @@ app.get('/version', (req, res) => {
 
 
 app.use('/api/products', productsRoutes);
+app.use('/api/items', itemsRoutes);
 
 
 connectDB(process.env.MONGO_URI).then(() => {
